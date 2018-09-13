@@ -1,5 +1,5 @@
 # coding:utf-8
-import erajs.era as e
+import erajs.api as api
 
 
 # def start_new_game():
@@ -17,7 +17,7 @@ import erajs.era as e
 #     e.t()
 
 
-e.init()
+api.init()
 # e.title('EraPet')
 # e.h('EraPet')
 # e.t()
