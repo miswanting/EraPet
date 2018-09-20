@@ -83,15 +83,14 @@ def load_pet(pet):
 def loop():
     global my_pet
     a.page()
+    a.t('{}很乖。'.format(my_pet['name']))
+    a.t()
     a.b('保存游戏', a.goto, save_game)
-    a.t('{}很乖。'.format(my_pet['name']), True)
-    a.repeat()
 
 
 def save_game():
     a.page()
     a.h('保存游戏')
-    a.t()
     a.t()
     a.show_save_to_save()
     a.b('返回', a.back)
