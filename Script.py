@@ -73,6 +73,7 @@ def init_cat():
 
 
 def load_pet(pet):
+    hash = a.add(pet)
     a.page()
     a.t('你将{}带回了家。'.format(pet['name']), True)
     global my_pet
