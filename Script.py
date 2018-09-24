@@ -86,7 +86,12 @@ def loop():
     a.page()
     a.t('{}很乖。'.format(my_pet['name']))
     a.t()
+    a.b('休息', rest)
     a.b('保存游戏', a.goto, save_game)
+
+
+def rest():
+    a.tick()
 
 
 def save_game():
