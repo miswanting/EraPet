@@ -80,8 +80,8 @@ def load_pet(pet):
 
 
 def loop():
-    global my_pet
     a.page()
+    my_pet = a.get({})
     a.t('{}很乖。'.format(my_pet['name']))
     a.t()
     a.b('休息', rest)
