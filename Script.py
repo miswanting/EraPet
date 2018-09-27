@@ -76,8 +76,6 @@ def load_pet(pet):
     hash = a.add(pet)
     a.page()
     a.t('你将{}带回了家。'.format(pet['name']), True)
-    global my_pet
-    my_pet = pet
     a.goto(loop)
 
 
@@ -92,6 +90,7 @@ def loop():
 
 def rest():
     a.tick()
+    a.repeat()
 
 
 def save_game():
