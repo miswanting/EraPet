@@ -1,7 +1,7 @@
 # coding:utf-8
 import erajs.api as a
 
-my_pet = {}
+my_pet = ''
 
 
 def start_new_game():
@@ -73,7 +73,9 @@ def init_cat():
 
 
 def load_pet(pet):
-    hash = a.add(pet)
+    # hash = a.add(pet)
+    global my_pet
+    my_pet = pet
     a.page()
     a.t('你将{}带回了家。'.format(pet['name']), True)
     a.goto(loop)
@@ -81,7 +83,10 @@ def load_pet(pet):
 
 def loop():
     a.page()
-    my_pet = a.get({})
+    a.t(a.get_full_time())
+    a.t()
+    # my_pet = a.get({})
+    global my_pet
     a.t('{}很乖。'.format(my_pet['name']))
     a.t()
     a.b('休息', rest)
@@ -89,7 +94,7 @@ def loop():
 
 
 def rest():
-    a.tick()
+    # a.tick()
     a.repeat()
 
 
