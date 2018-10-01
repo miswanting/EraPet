@@ -107,7 +107,11 @@ def save_game():
 
 
 def show_save():
-    pass
+    a.page()
+    a.h('读取游戏')
+    a.t()
+    a.show_save_to_load(loop)
+    a.b('返回', a.back)
 
 
 a.init()
