@@ -1,7 +1,7 @@
 # coding:utf-8
 import erajs.api as a
 
-my_pet = ''
+# 注意！不推荐在此处定义变量，而应在 a.init() 之后将变量定义在 a.data['db'] 中，以获得数据持久性支持。
 
 
 def start_new_game():
@@ -73,11 +73,10 @@ def init_cat():
 
 
 def load_pet(pet):
-    # hash = a.add(pet)
-    global my_pet
-    my_pet = pet
+    a.data['db']['my_pet'] = pet
     a.page()
-    a.t('你将{}带回了家。'.format(pet['name']), True)
+    a.t('你将{}带回了家。'.format(a.data['db']['my_pet']['name']), True)
+    a.clear_gui()
     a.goto(loop)
 
 
@@ -85,9 +84,7 @@ def loop():
     a.page()
     a.t(a.get_full_time())
     a.t()
-    # my_pet = a.get({})
-    global my_pet
-    a.t('{}很乖。'.format(my_pet['name']))
+    a.t('{}很乖。'.format(a.data['db']['my_pet']['name']))
     a.t()
     a.b('休息', rest)
     a.b('保存游戏', a.goto, save_game)
@@ -102,6 +99,7 @@ def save_game():
     a.page()
     a.h('保存游戏')
     a.t()
+    print(a.data['db'])
     a.show_save_to_save()
     a.b('返回', a.back)
 
