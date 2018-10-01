@@ -94,7 +94,7 @@ def loop():
 
 
 def rest():
-    # a.tick()
+    a.tick()
     a.repeat()
 
 
