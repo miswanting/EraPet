@@ -48,7 +48,9 @@ def init_dog():
         'name': 'Brane',
         'class': 'dog',
         'gender': 'male',
-        'master': ''
+        'health': 100,
+        'full': 100,
+        'strenth': 0,
     }
     a.t('姓名：'+new_pet['name'])
     a.t()
@@ -68,7 +70,9 @@ def init_cat():
         'name': 'Cathy',
         'class': 'cat',
         'gender': 'female',
-        'master': ''
+        'health': 100,
+        'full': 100,
+        'strenth': 0,
     }
     a.t('姓名：'+new_pet['name'])
     a.t()
@@ -94,7 +98,11 @@ def loop():
     a.page()
     a.t(a.get_full_time())
     a.t()
-    a.t('{}很乖。'.format(a.data['db']['player']['pets'][0]['name']))
+    a.t('{} {} {} {}/100 {}/100'.format(a.data['db']['player']['pets'][0]['name'],
+                                        a.data['db']['player']['pets'][0]['gender'],
+                                        a.data['db']['player']['pets'][0]['class'],
+                                        a.data['db']['player']['pets'][0]['health'],
+                                        a.data['db']['player']['pets'][0]['full']))
     a.t()
     a.b('训练', a.goto, m.train)
     a.b('商店', a.goto, m.shop)

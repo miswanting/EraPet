@@ -1,6 +1,13 @@
 {
     "物品": [{
         "name": "狗粮",
-        "cost": 250
+        "cost": 250,
+        "energy": 40,
+        "target": "dog"
+    }, {
+        "name": "猫粮",
+        "cost": 250,
+        "energy": 40,
+        "target": "cat"
     }]
 }
