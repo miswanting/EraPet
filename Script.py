@@ -1,6 +1,6 @@
 # coding:utf-8
 import erajs.api as a
-
+import game.main as m
 # 注意！不推荐在此处定义变量，而应在 a.init() 之后将变量定义在 a.data['db'] 中，以获得数据持久性支持。
 
 
@@ -13,6 +13,14 @@ def start_new_game():
 
 
 def default_person():
+    def add_default_person():
+        a.data['db']['player'] = {
+            'name': 'Adam',
+            '性别': '男',
+            "money": 1000,
+            'item': [],
+        }
+        a.goto(init_pet)
     a.page()
     a.h('默认玩家角色')
     a.t()
@@ -21,7 +29,7 @@ def default_person():
     a.t('性别：男')
     a.t()
     a.t('确定吗？')
-    a.b('是', a.goto, init_pet)
+    a.b('是', add_default_person)
     a.t('/')
     a.b('否', a.back)
 
@@ -39,7 +47,8 @@ def init_dog():
     new_pet = {
         'name': 'Brane',
         'class': 'dog',
-        'gender': 'male'
+        'gender': 'male',
+        'master': ''
     }
     a.t('姓名：'+new_pet['name'])
     a.t()
@@ -58,7 +67,8 @@ def init_cat():
     new_pet = {
         'name': 'Cathy',
         'class': 'cat',
-        'gender': 'female'
+        'gender': 'female',
+        'master': ''
     }
     a.t('姓名：'+new_pet['name'])
     a.t()
@@ -73,9 +83,9 @@ def init_cat():
 
 
 def load_pet(pet):
-    a.data['db']['my_pet'] = pet
+    a.data['db']['player']['pets'] = [pet]
     a.page()
-    a.t('你将{}带回了家。'.format(a.data['db']['my_pet']['name']), True)
+    a.t('你将{}带回了家。'.format(a.data['db']['player']['pets'][0]['name']), True)
     a.clear_gui()
     a.goto(loop)
 
@@ -84,14 +94,21 @@ def loop():
     a.page()
     a.t(a.get_full_time())
     a.t()
-    a.t('{}很乖。'.format(a.data['db']['my_pet']['name']))
+    a.t('{}很乖。'.format(a.data['db']['player']['pets'][0]['name']))
     a.t()
+    a.b('训练', a.goto, m.train)
+    a.b('商店', a.goto, m.shop)
     a.b('休息', rest)
+    a.t()
     a.b('保存游戏', a.goto, save_game)
+    a.b('读取游戏', a.goto, load_game)
+    a.b('结束游戏', quit_game)
 
 
 def rest():
     a.tick()
+    a.page()
+    a.t('经过了半天。', True)
     a.repeat()
 
 
@@ -104,7 +121,11 @@ def save_game():
     a.b('返回', a.back)
 
 
-def show_save():
+def quit_game():
+    pass
+
+
+def load_game():
     a.page()
     a.h('读取游戏')
     a.t()
@@ -119,4 +140,4 @@ a.t()
 a.t()
 a.b('开始饲养', a.goto, start_new_game)
 a.t()
-a.b('继续饲养', a.goto, show_save)
+a.b('继续饲养', a.goto, load_game)
